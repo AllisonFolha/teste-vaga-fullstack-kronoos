@@ -1,0 +1,14 @@
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+  }
+  .MuiPaginationItem-root {
+    color: #665B3E;
+    border-color: #665B3E;
+  }
+  
+  .MuiPaginationItem-root.Mui-selected {
+    background-color: #665B3E;
+    color: white;
+  }
