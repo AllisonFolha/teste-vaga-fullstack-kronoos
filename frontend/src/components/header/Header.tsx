@@ -4,7 +4,7 @@ import './Header.scss';
 const Header: React.FC = () => {
   return (
     <header className="header">
-      <h1>My Application</h1>
+      <h1>Teste kronoos app</h1>
     </header>
   );
 };
