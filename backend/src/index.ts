@@ -1,11 +1,12 @@
 import express from 'express';
 import fileUpload from 'express-fileupload';
-import cors from 'cors'; // Importar a biblioteca cors
+import cors from 'cors';
 import fs from 'fs';
 import path from 'path';
 import csv from 'csv-parser';
 import { formatCurrency } from './utils/formatCurrency';
-import { validateCPF, validateCNPJ } from './utils/validation';
+import { validateCPF } from './utils/validateCPF';
+import { validateCNPJ } from './utils/validateCNPJ';
 import { validateTotalInstallments } from './utils/validateTotalInstallments';
 
 const app = express();
@@ -25,20 +26,18 @@ interface Data {
   formattedMora: string;
 }
 
-// Middleware para lidar com uploads de arquivos
 app.use(fileUpload({
   createParentPath: true,
 }));
 
-// Middleware para permitir CORS
 app.use(cors({
   origin: 'http://localhost:8081', // Permitir requisições do front-end rodando em http://localhost:8081
 }));
 
 app.post('/upload', (req, res) => {
   if (!req.files || !req.files.file) {
-    console.error('No files were uploaded.');
-    return res.status(400).send('No files were uploaded.');
+    console.error('Nenhum arquivo foi enviado.');
+    return res.status(400).send('Nenhum arquivo foi enviado.');
   }
 
   const file = req.files.file as fileUpload.UploadedFile;
@@ -47,7 +46,7 @@ app.post('/upload', (req, res) => {
   // Mover o arquivo para a pasta de uploads
   file.mv(uploadPath, (err) => {
     if (err) {
-      console.error('Error moving file:', err);
+      console.error('Erro ao mover o arquivo:', err);
       return res.status(500).send(err);
     }
 
@@ -88,12 +87,12 @@ app.post('/upload', (req, res) => {
         res.json(results);
       })
       .on('error', (err) => {
-        console.error('Error reading CSV:', err);
-        res.status(500).send('Error processing CSV file.');
+        console.error('Erro ao processar o arquivo CSV:', err);
+        res.status(500).send('Erro ao processar o arquivo CSV.');
       });
   });
 });
 
 app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
+  console.log(`O servidor está rodando em http://localhost:${port}`);
 });
