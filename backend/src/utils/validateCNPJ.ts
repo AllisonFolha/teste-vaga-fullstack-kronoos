@@ -1,20 +1,32 @@
 export const validateCNPJ = (cnpj: string): boolean => {
-  if (cnpj.length !== 14 || /^(\d)\1*$/.test(cnpj)) return false;
+  // Remove caracteres não numéricos
+  const cleanedCNPJ = cnpj.replace(/[^\d]/g, '');
 
-  const digits = cnpj.split('').map(Number);
-  const validationArray = [6, 7, 8, 9, 2, 3, 4, 5];
+  // Verifica se o CNPJ tem 14 dígitos
+  if (cleanedCNPJ.length !== 14) return false;
 
-  for (let j = 12; j < 14; j++) {
-    let sum = 0;
-    for (let i = 0; i < j; i++) {
-      sum += digits[i] * validationArray[(j - i) % 8];
-    }
-    const rest = sum % 11;
-    if (rest < 2) {
-      if (digits[j] !== 0) return false;
-    } else {
-      if (digits[j] !== (11 - rest)) return false;
-    }
-  }
+  // Verifica se todos os dígitos são iguais
+  if (/^(\d)\1*$/.test(cleanedCNPJ)) return false;
+
+  // Pesos para o cálculo dos dígitos verificadores
+  const weightsFirstDigit = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+  const weightsSecondDigit = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+
+  const calculateVerifierDigit = (base: number[], weights: number[]): number => {
+    const sum = base.reduce((acc, digit, idx) => acc + digit * weights[idx], 0);
+    const remainder = sum % 11;
+    return remainder < 2 ? 0 : 11 - remainder;
+  };
+
+  const digits = cleanedCNPJ.split('').map(Number);
+
+  // Calcula o primeiro dígito verificador
+  const firstVerifierDigit = calculateVerifierDigit(digits.slice(0, 12), weightsFirstDigit);
+  if (digits[12] !== firstVerifierDigit) return false;
+
+  // Calcula o segundo dígito verificador
+  const secondVerifierDigit = calculateVerifierDigit(digits.slice(0, 13), weightsSecondDigit);
+  if (digits[13] !== secondVerifierDigit) return false;
+
   return true;
 };
