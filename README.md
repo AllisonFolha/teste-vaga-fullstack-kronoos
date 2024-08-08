@@ -1,8 +1,47 @@
+## Iniciando o Projeto
+
+Para iniciar o projeto, siga os seguintes passos:
+
+### Rodando o Back-end
+
+1. Navegue até o diretório do back-end:
+   ```sh
+   cd backend
+   ```
+2. Instale as dependências:
+   ```sh
+   npm install
+   ```
+3. Inicie o servidor:
+   ```sh
+    npm run dev
+   ```
+4. O servidor estará rodando em `http://localhost:3000`.
+
+### Rodando o Front-end
+
+1. Navegue até o diretório do front-end:
+   ```sh
+   cd frontend
+   ```
+2. Instale as dependências:
+   ```sh
+   npm install
+   ```
+3. Inicie o servidor do front-end:
+   ```sh
+    npm run dev
+   ```
+4. O front-end estará rodando em `http://localhost:8081`.
+
+---
+
 # Teste Prático para Desenvolvedor Full Stack Kronoos
 
 Você foi designado para desenvolver uma aplicação que deve lidar com grandes volumes de dados. Você deve rodar as seguintes validações e tratativas para cada um dos dados do arquivo e mostrar um retorno ao concluir a rotina. A aplicação será responsável por fornecer uma massa de dados considerável (cerca de 30GB) e deve ser capaz de lidar com dados fornecidos.
 
-*Observação Importante:*
+_Observação Importante:_
+
 1. Pedimos extremo comprometimento com o teste, e utilizamos IA para validar se os testes foram gerados por alguma IA (ChatGPT, LhamaGPT, Bard, Jasper, entre outras). Sua dedicação será crucial para uma avaliação justa.
 2. Pedimos que não utilize bibliotecas para efetuar a validação do CPF ou CNPJ. Queremos que você desenvolva o seu próprio algoritmo de validação para que possamos entender qual sua dinâmica de raciocínio.
 3. Pedimos que clonem o repo ou façam um fork para o github pessoal e nos sinalizem quando finalizarem, pois não será possível abrir PR neste repositório do teste.
@@ -20,7 +59,7 @@ Você foi designado para desenvolver uma aplicação que deve lidar com grandes 
 ## Validação de CPF ou CNPJ
 
 - Implementaremos uma função para validar o campo nrCpfCnpj e verificar se ele é um CPF ou CNPJ válido, seguindo as regras de validação apropriadas para cada formato.
-- Parte de todos os CPF e CNPJ sao invalidos, usamos um script para gerar dados fictícios. 
+- Parte de todos os CPF e CNPJ sao invalidos, usamos um script para gerar dados fictícios.
 
 ## Validação de Valor Total e Prestações
 
