@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Button from '../button/Button';
+import Notification from '../notification/Notification';
 import './FileUpload.scss';
 
 interface FileUploadProps {
@@ -8,6 +9,7 @@ interface FileUploadProps {
 
 const FileUpload: React.FC<FileUploadProps> = ({ onFileUpload }) => {
   const [file, setFile] = useState<File | null>(null);
+  const [notification, setNotification] = useState<{ message: string, type: 'success' | 'error' | 'info' } | null>(null);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -19,8 +21,9 @@ const FileUpload: React.FC<FileUploadProps> = ({ onFileUpload }) => {
     event.preventDefault();
     if (file) {
       onFileUpload(file);
+      setNotification(null);
     } else {
-      alert('Please upload a file first.');
+      setNotification({ message: 'Por favor, envie um arquivo', type: 'error' });
     }
   };
 
@@ -30,6 +33,7 @@ const FileUpload: React.FC<FileUploadProps> = ({ onFileUpload }) => {
         <input type="file" accept=".csv" onChange={handleFileChange} />
         <Button type="submit" onClick={handleSubmit} label="Upload" />
       </form>
+      {notification && <Notification message={notification.message} type={notification.type} />}
     </div>
   );
 };

@@ -13,6 +13,7 @@ module.exports = {
     'plugin:import/warnings',
     'plugin:import/typescript',
     'prettier',
+    'plugin:prettier/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -27,6 +28,7 @@ module.exports = {
     '@typescript-eslint',
     'jsx-a11y',
     'import',
+    'prettier',
   ],
   rules: {
     'react/jsx-filename-extension': [1, { extensions: ['.tsx'] }],
@@ -38,11 +40,12 @@ module.exports = {
         tsx: 'never',
       },
     ],
-    'react/react-in-jsx-scope': 'off', 
+    'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     'no-console': 'warn',
     'no-unused-vars': 'warn',
+    'prettier/prettier': 'error',
   },
   settings: {
     'import/resolver': {

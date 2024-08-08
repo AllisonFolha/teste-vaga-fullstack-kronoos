@@ -6,8 +6,7 @@ interface TableProps {
   data: any[];
 }
 
-const Table: React.FC<TableProps> = ({ columns, data }) => {
-  return (
+const Table: React.FC<TableProps> = ({ columns, data }) => (
     <table className="table">
       <thead>
         <tr>
@@ -27,6 +26,5 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
       </tbody>
     </table>
   );
-};
 
 export default Table;
