@@ -9,12 +9,10 @@ interface PaginationProps extends MuiPaginationProps {
   onChange: (event: React.ChangeEvent<unknown>, value: number) => void;
 }
 
-const Pagination: React.FC<PaginationProps> = ({ pageCount, page, onChange, ...props }) => {
-  return (
+const Pagination: React.FC<PaginationProps> = ({ pageCount, page, onChange, ...props }) => (
     <Box className="pagination-container">
       <MuiPagination count={pageCount} page={page} onChange={onChange} {...props} />
     </Box>
   );
-};
 
 export default Pagination;

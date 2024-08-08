@@ -8,12 +8,10 @@ interface ButtonProps {
   type?: 'button' | 'submit' | 'reset';
 }
 
-const Button: React.FC<ButtonProps> = ({ onClick, label, className, type = 'button' }) => {
-  return (
+const Button: React.FC<ButtonProps> = ({ onClick, label, className, type = 'button' }) => (
     <button type={type} className={`button ${className}`} onClick={onClick}>
       {label}
     </button>
   );
-};
 
 export default Button;

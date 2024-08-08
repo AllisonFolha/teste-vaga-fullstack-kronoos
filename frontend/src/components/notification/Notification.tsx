@@ -6,8 +6,6 @@ interface NotificationProps {
   type: 'success' | 'error' | 'info';
 }
 
-const Notification: React.FC<NotificationProps> = ({ message, type }) => {
-  return <div className={`notification ${type}`}>{message}</div>;
-};
+const Notification: React.FC<NotificationProps> = ({ message, type }) => <div className={`notification ${type}`}>{message}</div>;
 
 export default Notification;
